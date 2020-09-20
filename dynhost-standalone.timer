@@ -1,11 +1,10 @@
 [Unit]
-Description=Sets the IP of home
-Wants=dynhost-standalone.timer
+Description=Timer for dynhost-standalone
+Requires=dynhost-standalone.service
 
-[Service]
-Type=oneshot
-WorkingDirectory=/opt/dynhost-standalone
-ExecStart=/usr/bin/python main.py
+[Timer]
+Unit=dynhost-standalone.service
+OnCalendar=*:0/5
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=timers.target
